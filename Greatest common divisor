@@ -1,0 +1,20 @@
+#最大公約数~巨大な数対応可~
+A, B = map(int, input().split(" "))
+GCD = 1
+AB_fac = []
+
+#公約数を抜き出す
+i = 2
+while(i<=A and i<=B):
+  if A % i == 0:
+    if B % i == 0:
+      while(A%i==0 and B%i==0):
+        AB_fac.append(i)　　　　　　#公約数を抜き出して格納
+        A /= i　　　　　　　　　　　　 #公約数で割っていくことで巨大な数にも対応可
+        B /= i
+  i += 1
+        
+for i in range(len(AB_fac)):
+  GCD *= AB_fac[i]
+
+print(GCD)
