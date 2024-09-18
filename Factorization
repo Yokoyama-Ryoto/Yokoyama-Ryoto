@@ -1,0 +1,29 @@
+#素因数分解プログラム~巨大な数に対応可~
+#値を受け取る
+N = int(input())
+divisor = []
+
+#素数か判定
+def prime_number(i):
+  for j in range(2, int(i**(1/2))+1):
+    if i % j == 0:
+      return False
+    if j == (int(i**(1/2))):
+      if i % j != 0:
+        return True
+
+if prime_number(N):　　#Nが素数の場合そのまま出力
+  divisor.append(N)
+else:　　　　　　　　　　　#Nが素数でなければ素因数分解
+  i = 2
+  while(N>1):
+    while(N%i==0):　　#割り切れなくなるまで約分を繰り返す
+      a = N / i　　　　#商も因数になる
+      N /= i
+      divisor.append(i)
+      if prime_number(a):　#商が素数であれば素因数
+        N /= a
+        divisor.append(int(a))
+    i += 1
+
+print(*divisor)
